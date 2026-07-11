@@ -1,3 +1,5 @@
+import os
+from dotenv import load_dotenv
 from flask import Flask, render_template, request, session, redirect 
 import mysql.connector
 import re
@@ -5,22 +7,24 @@ import smtplib
 import random
 from email.mime.text import MIMEText
 
+load_dotenv()
+
 app = Flask(__name__)
-app.secret_key = "qflow_secret_key"
+app.secret_key = os.getenv("SECRET_KEY")
 
 # ---------------- DATABASE ---------------- #
 
 db = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="Yashi50",
-    database="qflow"
+    host=os.getenv("DB_HOST"),
+    user=os.getenv("DB_USER"),
+    password=os.getenv("DB_PASSWORD"),
+    database=os.getenv("DB_NAME")
 )
 
 print("Database Connected Successfully!")
 
-EMAIL_ADDRESS = "yashimalini4@gmail.com"
-EMAIL_PASSWORD = "dxulxbihbxpdylym"
+EMAIL_ADDRESS = os.getenv("EMAIL_ADDRESS")
+EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
 
 
 # ---------------- HOME ---------------- #
@@ -388,7 +392,7 @@ def my_token():
 
     <a href="/book-token">Book a Token</a>
     """
-# ---------------- QUEUE STATUS ---------------- #
+
 # ---------------- QUEUE STATUS ---------------- #
 
 @app.route("/queue-status")
@@ -632,6 +636,35 @@ def organization():
         )
 
     return render_template("organization_login.html")
+
+# ---------------- COMPLETED TOKENS ---------------- #
+
+@app.route("/completed-tokens")
+def completed_tokens():
+
+    organization = session.get("organization")
+
+    cursor = db.cursor(dictionary=True)
+
+    cursor.execute(
+        """
+        SELECT *
+        FROM tokens
+        WHERE organization=%s
+        AND status='Completed'
+        ORDER BY token_number DESC
+        """,
+        (organization,)
+    )
+
+    completed = cursor.fetchall()
+
+    cursor.close()
+
+    return render_template(
+        "completed_tokens.html",
+        completed=completed
+    )
 
 
 # ---------------- RUN APP ---------------- #

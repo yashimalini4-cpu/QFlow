@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Completed Tokens</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">QFlow</div>
+
+    <ul>
+        <li><a href="/organization-dashboard">Dashboard</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+
+    <h1>Completed Tokens</h1>
+
+    <table border="1" cellpadding="10">
+
+        <tr>
+            <th>Token</th>
+            <th>Customer</th>
+            <th>Department</th>
+            <th>Status</th>
+        </tr>
+
+        {% for token in completed %}
+
+        <tr>
+            <td>{{ token.token_number }}</td>
+            <td>{{ token.customer_email }}</td>
+            <td>{{ token.department }}</td>
+            <td>{{ token.status }}</td>
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</div>
+
+</body>
+
+</html>
