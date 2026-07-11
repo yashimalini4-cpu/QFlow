@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Registration</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">QFlow</div>
+
+    <ul>
+        <li><a href="/">Home</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+
+    <h1>Create Your Account</h1>
+    <h2>Customer Registration</h2>
+
+    <form action="/register" method="POST">
+
+        <input type="text"
+               name="full_name"
+               placeholder="Full Name"
+               value="{{ request.form.get('full_name','') }}"
+               required>
+
+        {% if name_error %}
+        <p class="error">⚠ {{ name_error }}</p>
+        {% endif %}
+
+        <input type="email"
+               name="email"
+               placeholder="Email Address"
+               value="{{ request.form.get('email','') }}"
+               required>
+
+        {% if email_error %}
+        <p class="error">⚠ {{ email_error }}</p>
+        {% endif %}
+
+        <input type="tel"
+               name="mobile"
+               placeholder="Mobile Number"
+               value="{{ request.form.get('mobile','') }}"
+               required>
+
+        {% if mobile_error %}
+        <p class="error">⚠ {{ mobile_error }}</p>
+        {% endif %}
+
+        <input type="password"
+               name="password"
+               placeholder="Password"
+               required>
+
+        <p class="password-hint">
+            Password should contain at least 4 characters.
+        </p>
+
+        {% if password_error %}
+        <p class="error">⚠ {{ password_error }}</p>
+        {% endif %}
+
+        <input type="password"
+               name="confirm_password"
+               placeholder="Confirm Password"
+               required>
+
+        {% if confirm_password_error %}
+        <p class="error">⚠ {{ confirm_password_error }}</p>
+        {% endif %}
+
+        <button type="submit">Register</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

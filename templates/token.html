@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Your Token - QFlow</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">QFlow</div>
+
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/book-token">Book Token</a></li>
+         <li><a href="/customer-dashboard">Dashboard</a></li>
+        <li><a href="/login">Logout</a></li>
+    </ul>
+
+</nav>
+
+<div class="container">
+
+    <h1>Token Generated Successfully</h1>
+
+    <hr>
+
+    <h2>Token Number : {{ token_number }}</h2>
+
+    <p><strong>Customer Email :</strong> {{ customer_email }}</p>
+
+    <p><strong>Organization :</strong> {{ organization }}</p>
+
+    <p><strong>Department :</strong> {{ department }}</p>
+
+    <p><strong>Status :</strong> {{ status }}</p>
+
+    <br>
+
+    <button onclick="window.location.href='/customer-dashboard'">
+        Back to Dashboard
+    </button>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Login</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">
+        QFlow
+    </div>
+
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/customer">Customer</a></li>
+    </ul>
+
+</nav>
+
+<div class="container">
+
+    <h1>Welcome Back</h1>
+
+    <h2>Customer Login</h2>
+
+    <form action="/login" method="POST">
+
+        <input
+            type="email"
+            name="email"
+            placeholder="Email Address"
+            required>
+
+        {% if login_email_error %}
+        <p class="error">⚠ {{ login_email_error }}</p>
+        {% endif %}
+
+        <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required>
+
+        {% if login_password_error %}
+        <p class="error">⚠ {{ login_password_error }}</p>
+        {% endif %}
+
+        <button type="submit">
+            Login
+        </button>
+
+    </form>
+
+    <br>
+
+    <p style="text-align:center;">
+        Don't have an account?
+        <a href="/register">Register</a>
+    </p>
+
+</div>
+
+</body>
+
+</html>

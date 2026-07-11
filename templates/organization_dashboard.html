@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Organization Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">
+        QFlow
+    </div>
+
+    <ul>
+
+        <li><a href="/">Home</a></li>
+        <li><a href="/organization-dashboard">Dashboard</a></li>
+        <li><a href="/organization">Logout</a></li>
+
+    </ul>
+
+</nav>
+
+<div class="container">
+
+    <h1>Welcome, {{ organization }}</h1>
+
+    <h2>Organization Dashboard</h2>
+
+    <button onclick="window.location.href='/view-tokens'">
+
+        View Waiting Tokens
+
+    </button>
+
+    <br><br>
+
+    <button onclick="window.location.href='/call-next-token'">
+
+        Call Next Token
+
+    </button>
+
+    <br><br>
+
+    <button onclick="window.location.href='/completed-tokens'">
+
+        Completed Tokens
+
+    </button>
+
+</div>
+
+</body>
+
+</html>

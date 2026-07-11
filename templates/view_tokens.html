@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Waiting Tokens</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">QFlow</div>
+
+    <ul>
+
+        <li><a href="/organization-dashboard">Dashboard</a></li>
+        
+
+    </ul>
+
+</nav>
+
+<div class="container">
+
+<h1>Waiting Tokens</h1>
+
+<table border="1" cellpadding="10" cellspacing="0" width="100%">
+
+<tr>
+
+<th>Token</th>
+
+<th>Email</th>
+
+<th>Department</th>
+
+<th>Status</th>
+
+</tr>
+
+{% for token in tokens %}
+
+<tr>
+
+<td>{{ token.token_number }}</td>
+
+<td>{{ token.customer_email }}</td>
+
+<td>{{ token.department }}</td>
+
+<td>{{ token.status }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br>
+
+<a href="/organization-dashboard">
+<button>Back</button>
+</a>
+
+</div>
+
+</body>
+
+</html>

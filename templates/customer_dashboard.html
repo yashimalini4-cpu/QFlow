@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">QFlow</div>
+
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/login">Logout</a></li>
+    </ul>
+
+</nav>
+
+<div class="container">
+
+    <h1>Welcome, {{ name }} </h1>
+
+    <h2>Customer Dashboard</h2>
+
+    <button onclick="window.location.href='/book-token'">
+        1. Book New Token
+    </button>
+
+    <br><br>
+
+    <button onclick="window.location.href='/my-token'">
+        2. My Token
+    </button>
+
+    <br><br>
+
+   <button onclick="window.location.href='/queue-status'">
+       3. Queue Status
+    </button>
+
+</div>
+
+</body>
+
+</html>

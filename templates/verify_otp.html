@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Verify OTP</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">
+        QFlow
+    </div>
+
+    <ul>
+
+        <li><a href="/">Home</a></li>
+
+    </ul>
+
+</nav>
+
+<div class="container">
+
+    <h1>Email Verification</h1>
+
+    <h2>Enter the OTP sent to your email</h2>
+
+    <form action="/verify-otp" method="POST">
+
+        <input
+            type="text"
+            name="otp"
+            placeholder="Enter 6-digit OTP"
+            required>
+
+        <br><br>
+
+        {% if otp_error %}
+
+            <p style="color:red;">
+                {{ otp_error }}
+            </p>
+
+        {% endif %}
+
+        <button type="submit">
+
+            Verify OTP
+
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>

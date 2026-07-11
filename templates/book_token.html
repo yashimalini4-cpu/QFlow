@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Book Token</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">
+        QFlow
+    </div>
+
+    <ul>
+
+        <li><a href="/">Home</a></li>
+        <li><a href="/customer-dashboard">Dashboard</a></li>
+        <li><a href="/login">Logout</a></li>
+
+    </ul>
+
+</nav>
+
+<div class="container">
+
+    <h1>Book New Token</h1>
+
+    <h2>Select Organization & Department</h2>
+
+    <form action="/book-token" method="POST">
+
+        <label>Organization</label>
+
+        <select name="organization" required>
+
+            <option value="">Select Organization</option>
+
+            <option value="ABC Hospital">ABC Hospital</option>
+
+            <option value="XYZ Bank">XYZ Bank</option>
+
+            <option value="DY Patil University">DY Patil University</option>
+
+        </select>
+
+        <br>
+
+        <label>Department</label>
+
+        <select name="department" required>
+
+            <option value="">Select Department</option>
+
+            <option value="Cardiology">Cardiology</option>
+
+            <option value="Accounts">Accounts</option>
+
+            <option value="Admissions">Admissions</option>
+
+        </select>
+
+        <br><br>
+
+        <button type="submit">
+
+            Generate Token
+
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>

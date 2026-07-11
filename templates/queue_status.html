@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Queue Status</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">
+        QFlow
+    </div>
+
+    <ul>
+
+        <li><a href="/">Home</a></li>
+        <li><a href="/customer-dashboard">Dashboard</a></li>
+        <li><a href="/login">Logout</a></li>
+
+    </ul>
+
+</nav>
+
+<div class="container">
+
+    <h1>Live Queue Status</h1>
+
+    <br>
+
+    <h2>Your Token : {{ token_number }}</h2>
+
+    <br>
+
+    <p><strong>Current Token Being Served :</strong> {{ current_token }}</p>
+
+    <p><strong>People Ahead :</strong> {{ people_ahead }}</p>
+
+    <p><strong>Estimated Waiting Time :</strong> {{ waiting_time }} Minutes</p>
+
+    <p><strong>Status :</strong> {{ status }}</p>
+
+    <br>
+
+    <h3>Queue Progress</h3>
+
+    <progress
+        value="{{ progress }}"
+        max="100"
+        style="width:350px; height:25px;">
+    </progress>
+
+    <br><br>
+
+    <h2>{{ progress }}% Completed</h2>
+
+    <br>
+
+    <button onclick="window.location.reload();">
+
+        Refresh Queue
+
+    </button>
+
+    <br><br>
+
+    <a href="/customer-dashboard">
+
+        <button>
+
+            Back to Dashboard
+
+        </button>
+
+    </a>
+
+</div>
+
+</body>
+
+</html>

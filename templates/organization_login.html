@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Organization Login</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">
+        QFlow
+    </div>
+
+    <ul>
+        <li><a href="/">Home</a></li>
+    </ul>
+
+</nav>
+
+<div class="container">
+
+    <h1>Organization Login</h1>
+
+    <h2>For Verified Organizations Only</h2>
+
+    <form action="/organization" method="POST">
+
+        <input
+            type="email"
+            name="email"
+            placeholder="Organization Email"
+            required>
+
+        <br><br>
+
+        <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required>
+
+        <br><br>
+
+        {% if login_error %}
+            <p style="color:red;">{{ login_error }}</p>
+        {% endif %}
+
+        <button type="submit">
+            Login
+        </button>
+
+    </form>
+
+    <br>
+
+    <p>
+
+        <b>Don't have access?</b>
+
+        <br><br>
+
+        Please contact the QFlow Administrator to request
+        organization registration and account verification.
+
+    </p>
+
+</div>
+
+</body>
+
+</html>
