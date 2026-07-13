@@ -1,11 +1,10 @@
+import requests
 import os
 from dotenv import load_dotenv
 from flask import Flask, render_template, request, session, redirect 
 import mysql.connector
 import re
-import smtplib
 import random
-from email.mime.text import MIMEText
 
 load_dotenv()
 
@@ -124,8 +123,25 @@ def register():
         session["mobile"] = mobile
         session["password"] = password
 
-        # Create Email
-        msg = MIMEText(f"""
+        # Send OTP using Brevo API
+        headers = {
+            "accept": "application/json",
+            "api-key": os.getenv("BREVO_API_KEY"),
+            "content-type": "application/json"
+        }
+
+        data = {
+            "sender": {
+                "name": "QFlow",
+                "email": EMAIL_ADDRESS
+            },
+            "to": [
+                {
+                    "email": email
+                }
+            ],
+            "subject": "QFlow Email Verification OTP",
+            "textContent": f"""
 Welcome to QFlow!
 
 Your OTP for email verification is:
@@ -136,17 +152,18 @@ This OTP is valid for this registration only.
 
 Thank you,
 Team QFlow
-""")
+"""
+        }
 
-        msg["Subject"] = "QFlow Email Verification OTP"
-        msg["From"] = EMAIL_ADDRESS
-        msg["To"] = email
+        response = requests.post(
+            "https://api.brevo.com/v3/smtp/email",
+            headers=headers,
+            json=data
+        )
 
-        server = smtplib.SMTP(os.getenv("MAIL_SERVER"), int(os.getenv("MAIL_PORT")))
-        server.starttls()
-        server.login(os.getenv("MAIL_USERNAME"), os.getenv("MAIL_PASSWORD"))
-        server.send_message(msg)
-        server.quit()
+        if response.status_code not in [200, 201]:
+            cursor.close()
+            return f"Email sending failed: {response.text}", 500
 
         cursor.close()
 
