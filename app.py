@@ -142,9 +142,9 @@ Team QFlow
         msg["From"] = EMAIL_ADDRESS
         msg["To"] = email
 
-        server = smtplib.SMTP("smtp.gmail.com", 587)
+        server = smtplib.SMTP(os.getenv("MAIL_SERVER"), int(os.getenv("MAIL_PORT")))
         server.starttls()
-        server.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
+        server.login(os.getenv("MAIL_USERNAME"), os.getenv("MAIL_PASSWORD"))
         server.send_message(msg)
         server.quit()
 
